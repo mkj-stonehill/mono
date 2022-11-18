@@ -1232,6 +1232,10 @@ namespace System.Windows.Forms {
 				if (ex.SocketErrorCode != SocketError.WouldBlock) {
 					throw;
 				}
+			} catch (Mono.Unix.UnixIOException ex) {
+				if (ex.ErrorCode != Mono.Unix.Native.Errno.EWOULDBLOCK) {
+					throw;
+				}
 			}
 		}
 
